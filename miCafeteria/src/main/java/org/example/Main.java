@@ -13,7 +13,7 @@ public class Main {
         String [] bebidas = {"Café Negro", "Café con leche", "Capuchino", "Chocolate Caliente", "Té", "Agua Pura"};
         int[] precioBebidas = {5,7,10,8,7,5};
         String [] comidas =  {"Hamburguesas","Hot Dog","Pan con Pollo","Pan con Jamon","Pizza (porcion)","Papas Fritas","Tacos","Shuco"};
-        int[] precioComidas = {18,15,12,10,15,10,12,15};
+        int[] precioComidas = {18,15,12,10,15,10,15,10};
         String[] postres = {"Pastel de Chocolate","Pastel tres leches","Flan","Helado","Cheesecake"};
         int [] precioPostres = {15,16,10,10,18};
         int opcionElegida;
@@ -49,7 +49,7 @@ public class Main {
                     System.out.print("Ingrese cantidad: ");
                     cantidad=sc.nextInt();
                     cantidadesPedidas.add(cantidad);
-                    preciosUnitarios.add(precioBebidas[productosPedidos.indexOf(bebidas[opcionElegida])]);
+                    preciosUnitarios.add(precioBebidas[opcionElegida]);
 
                 }else { //si el producto ya existe enotnces se obtiene el indice del mismo y se actualiza unicamente el array cantidadesPedidas
                     System.out.print("Ingrese la cantidad a agregar: ");
@@ -59,7 +59,7 @@ public class Main {
                     cantidadesPedidas.set(indiceProducto, cantidad);
                 }
 
-                System.out.println("Desea agregar mas bebidas: (escriba 1 para agregar mas");
+                System.out.println("Desea agregar mas bebidas: (escriba 1 para agregar mas)");
 
                 opcionElegida = sc.nextInt();
                 if (opcionElegida!=1){
@@ -94,7 +94,9 @@ public class Main {
                     System.out.print("Ingrese cantidad: ");
                     cantidad=sc.nextInt();
                     cantidadesPedidas.add(cantidad);
-                    preciosUnitarios.add(precioComidas[productosPedidos.indexOf(comidas[opcionElegida])]);
+
+                    preciosUnitarios.add(precioComidas[opcionElegida]); // correccion la forma en al que se accede
+                    // al precio unitario, si el array esta vacio o si el producto no existe solo se debe de acceder al precio
 
                 }else { //si el producto ya existe enotnces se obtiene el indice del mismo y se actualiza unicamente el array cantidadesPedidas
                     System.out.print("Ingrese la cantidad a agregar: ");
@@ -115,11 +117,40 @@ public class Main {
 
 
         }
-        System.out.println("Cant-------descripcion-----------------precio Unitario ---------------Subtotal");
-        for (int i=0;i<productosPedidos.size();i++){
-            int subtotal = Integer.parseInt(String.valueOf(preciosUnitarios.get(i)))*Integer.parseInt(String.valueOf(cantidadesPedidas.get(i)));
+        System.out.println("Cant----descripcion---------precio Unitario-----Subtotal");
 
-            System.out.println(cantidadesPedidas.get(i)+"----------"+productosPedidos.get(i)+"--------"+preciosUnitarios.get(i)+"------ Q "+subtotal);
+
+        //CICLO FOR QUE SE ENCARGA DE MOSTRAR EL PEDIDO FINAL
+        for (int i =0;i<productosPedidos.size();i++){
+
+            String productoAImprimir = productosPedidos.get(i);
+            int cantidadAImprimir = cantidadesPedidas.get(i);
+            int precioAImprimir = preciosUnitarios.get(i);
+
+            int subtotal = cantidadAImprimir * precioAImprimir;
+            String infoProducto="";
+
+            if (cantidadAImprimir<10){
+                infoProducto = " ";
+            }
+            infoProducto = infoProducto + cantidadAImprimir + " ------ "+productoAImprimir;
+            String separador =" ";
+
+            for (int j=0;j<24-productoAImprimir.length();j++){
+                separador=separador + "-";
+            }
+
+            if (precioAImprimir<10){
+                separador = separador +" Q  ";
+            }else {
+                separador = separador + " Q ";
+            }
+
+            infoProducto = infoProducto + separador+precioAImprimir + " -------- Q "+subtotal;
+
+            System.out.println(infoProducto);
+
         }
+
     }
 }
