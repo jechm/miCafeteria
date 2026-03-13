@@ -8,7 +8,7 @@ public class Main {
     static void main() {
         Scanner sc = new Scanner(System.in);
 
-
+        String nombreCliente="";
 
         String [] bebidas = {"Café Negro", "Café con leche", "Capuchino", "Chocolate Caliente", "Té", "Agua Pura"};
         int[] precioBebidas = {5,7,10,8,7,5};
@@ -27,7 +27,11 @@ public class Main {
 
         boolean agregarMas = true;
 
+        System.out.print("Ingresar el nombre del cliente: ");
+        nombreCliente = sc.nextLine();
+
         while (agregarMas){
+
             System.out.println("====== Menu Bebidas ======");
             for (int i =0;i<bebidas.length;i++){
                 System.out.print(i+1+" "+bebidas[i]);
@@ -37,6 +41,7 @@ public class Main {
                 System.out.println(" Q "+precioBebidas[i]);
 
             }
+
             System.out.print("Ingrese el numero de la bebida a elegir: ");
             opcionElegida = sc.nextInt();
             opcionElegida--;
@@ -117,10 +122,12 @@ public class Main {
 
 
         }
+        System.out.println("CLiente: "+nombreCliente+"\n===================================================");
         System.out.println("Cant----descripcion---------precio Unitario-----Subtotal");
 
 
         //CICLO FOR QUE SE ENCARGA DE MOSTRAR EL PEDIDO FINAL
+        int totalGastado=0;
         for (int i =0;i<productosPedidos.size();i++){
 
             String productoAImprimir = productosPedidos.get(i);
@@ -147,10 +154,11 @@ public class Main {
             }
 
             infoProducto = infoProducto + separador+precioAImprimir + " -------- Q "+subtotal;
-
+            totalGastado = totalGastado + subtotal;
             System.out.println(infoProducto);
 
         }
+        System.out.println("===================================================\n\tTotal Gastado: Q "+totalGastado);
 
     }
 }
