@@ -10,7 +10,7 @@ public class Main {
         //Area de variables principales
         Scanner sc = new Scanner(System.in);
 
-        String nombreCliente="";
+        String nombreCliente;
 
             //arrays que contendran los menus de la cafeteria
         String [] bebidas = {"Café Negro", "Café con leche", "Capuchino", "Chocolate Caliente", "Té", "Agua Pura","NO BEBIDA"};
@@ -77,12 +77,15 @@ public class Main {
                     cantidadesPedidas.set(indiceProducto, cantidad);
                 }
 
+                if (opcionElegida!= bebidas.length-1) {
+                    System.out.println("Desea agregar mas BEBIDAS: (escriba 1 para agregar mas)");
 
-                System.out.println("Desea agregar mas bebidas: (escriba 1 para agregar mas)");
-
-                opcionElegida = sc.nextInt();
-                if (opcionElegida!=1){ //si ingresa 1 es que quiere mas productos uso el 1 para seguir usando la variable opcionElegida
-                    agregarMas = false;
+                    opcionElegida = sc.nextInt();
+                    if (opcionElegida != 1) { //si ingresa 1 es que quiere mas productos uso el 1 para seguir usando la variable opcionElegida
+                        agregarMas = false;
+                    }
+                }else{
+                    agregarMas=false;
                 }
 
             }
@@ -129,11 +132,15 @@ public class Main {
                     cantidadesPedidas.set(indiceProducto, cantidad);
                 }
 
-                System.out.println("Desea agregar mas COMIDAS: (escriba 1 para agregar mas)");
+                if (opcionElegida != comidas.length-1) {
+                    System.out.println("Desea agregar mas COMIDAS: (escriba 1 para agregar mas)");
 
-                opcionElegida = sc.nextInt();
-                if (opcionElegida!=1){
-                    agregarMas = false;
+                    opcionElegida = sc.nextInt();
+                    if (opcionElegida != 1) { //si ingresa 1 es que quiere mas productos uso el 1 para seguir usando la variable opcionElegida
+                        agregarMas = false;
+                    }
+                }else{
+                    agregarMas=false;
                 }
 
             }
@@ -180,11 +187,15 @@ public class Main {
                 }
 
 
-                System.out.println("Desea agregar mas POSTRES: (escriba 1 para agregar mas)");
+                if (opcionElegida!= postres.length-1) {
+                    System.out.println("Desea agregar mas BEBIDAS: (escriba 1 para agregar mas)");
 
-                opcionElegida = sc.nextInt();
-                if (opcionElegida!=1){
-                    agregarMas = false;
+                    opcionElegida = sc.nextInt();
+                    if (opcionElegida != 1) { //si ingresa 1 es que quiere mas productos uso el 1 para seguir usando la variable opcionElegida
+                        agregarMas = false;
+                    }
+                }else{
+                    agregarMas=false;
                 }
 
             }
